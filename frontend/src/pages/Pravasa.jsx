@@ -21,6 +21,7 @@ import {
   Coffee,
   ShoppingBag,
   Gamepad2,
+  Eye,
 } from "lucide-react"
 
 export default function PravasaLeadPage() {
@@ -100,6 +101,57 @@ export default function PravasaLeadPage() {
       description: "Advanced security systems and surveillance",
     },
   ]
+
+  const galleryImages = [
+    {
+      src: "/img3.jpg?height=400&width=600",
+      title: "Luxury Exterior View",
+    },
+    {
+      src: "/club9.jpeg?height=400&width=600",
+      title: "Swimming Pool Area",
+    },
+    {
+      src: "/club4.jpeg?height=400&width=600",
+      title: "Club House",
+    },
+    {
+      src: "/img4.jpg?height=400&width=600",
+      title: "Landscaped Gardens",
+    },
+    {
+      src: "/Gym.jpeg?height=400&width=600",
+      title: "Fitness Center",
+    },
+    {
+      src: "/bgImage11.jpg?height=400&width=600",
+      title: "Apartments",
+    },
+    {
+      src: "/img1.jpg?height=400&width=600",
+      title: "Parking Area",
+    },
+    {
+      src: "/Court.jpeg?height=400&width=600",
+      title: "Badminton Court",
+    },
+  ]
+
+  const scrollToForm = () => {
+    
+    const formElement = document.getElementById("home")
+    if (formElement) {
+      formElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      })
+      // Add a subtle highlight effect
+      formElement.classList.add("ring-4", "ring-green-400", "ring-opacity-50")
+      setTimeout(() => {
+        formElement.classList.remove("ring-4", "ring-green-400", "ring-opacity-50")
+      }, 2000)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -270,7 +322,7 @@ export default function PravasaLeadPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="flex items-center justify-center px-8 py-4 bg-green-600 text-white rounded-lg font-semibold text-lg hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call: 7827 678 754
+                  Call
                 </button>
                 <button className="flex items-center justify-center px-8 py-4 bg-white/10 text-white border-2 border-white rounded-lg font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm">
                   <Download className="w-5 h-5 mr-2" />
@@ -389,8 +441,10 @@ export default function PravasaLeadPage() {
         </div>
       </section>
 
+
+
       {/* Amenities Section */}
-      <section id="amenities" className="py-20 bg-white">
+      {/* <section id="amenities" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">World-Class Amenities</h2>
@@ -415,6 +469,116 @@ export default function PravasaLeadPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section> */}
+
+
+      {/* Simple Gallery Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">World-Class Amenities</h2>
+            <div className="w-24 h-1 bg-green-600 mx-auto mb-8"></div>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Explore the stunning architecture and premium amenities of ROF Pravasa
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {galleryImages.map((image, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              >
+                <img src={image.src || "/placeholder.svg"} alt={image.title} className="w-full h-48 object-cover" />
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-gray-900">{image.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Location & Site Map Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Location & Site Information</h2>
+            <div className="w-24 h-1 bg-green-600 mx-auto mb-8"></div>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Discover our strategic location and detailed site layout
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Location Map */}
+            <div className="relative group cursor-pointer" onClick={scrollToForm}>
+              <div className="relative overflow-hidden rounded-2xl shadow-lg">
+                <img
+                  src="/locationMap3.jpg?height=400&width=600"
+                  alt="Location Map"
+                  className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <Eye className="w-12 h-12 mx-auto mb-4" />
+                    <h3 className="text-2xl font-bold mb-2">View Location Map</h3>
+                    <p className="text-lg mb-4">Get detailed location information</p>
+                    <div className="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center">
+                      Enquire Now
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Partial visibility overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
+              </div>
+
+              <div className="mt-4 text-center">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Location Map</h3>
+                <p className="text-gray-600">Prime location on Dwarka Expressway</p>
+              </div>
+            </div>
+
+            {/* Site Map */}
+            <div className="relative group cursor-pointer" onClick={scrollToForm}>
+              <div className="relative overflow-hidden rounded-2xl shadow-lg">
+                <img
+                  src="/club1.jpeg?height=400&width=600"
+                  alt="Site Map"
+                  className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <Eye className="w-12 h-12 mx-auto mb-4" />
+                    <h3 className="text-2xl font-bold mb-2">View Site Plan</h3>
+                    <p className="text-lg mb-4">Explore detailed site layout</p>
+                    <div className="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center">
+                      Enquire Now
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Partial visibility overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
+              </div>
+
+              <div className="mt-4 text-center">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Site Map</h3>
+                <p className="text-gray-600">Detailed project layout and planning</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Call to Action below maps */}
+          
         </div>
       </section>
 
