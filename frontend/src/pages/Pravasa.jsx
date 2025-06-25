@@ -169,11 +169,7 @@ export default function PravasaLeadPage() {
                 <Shield className="w-4 h-4 mr-1" /> RERA No: 21 of 2025
               </span>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="flex items-center font-semibold">
-                <Phone className="w-4 h-4 mr-1" /> 7827 678 754
-              </span>
-            </div>
+            
           </div>
         </div>
 
@@ -322,7 +318,7 @@ export default function PravasaLeadPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="flex items-center justify-center px-8 py-4 bg-green-600 text-white rounded-lg font-semibold text-lg hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                   <Phone className="w-5 h-5 mr-2" />
-                  Call
+                  Call Now
                 </button>
                 <button className="flex items-center justify-center px-8 py-4 bg-white/10 text-white border-2 border-white rounded-lg font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm">
                   <Download className="w-5 h-5 mr-2" />
