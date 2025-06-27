@@ -34,6 +34,7 @@ export default function PravasaLeadPage() {
    const [loadingBrochure, setBrochureLoading] = useState(false);
    const [messageBrochure, setBrochureMessage] = useState('');
    const [showBrochureForm, setShowBrochureForm] = useState(false);
+   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -64,7 +65,7 @@ export default function PravasaLeadPage() {
     setBrochureMessage('');
 
     try {
-      const res = await fetch('https://api.rofconnect.com/api/enquiry/send', {
+      const res = await fetch(`${API_BASE_URL}/api/enquiry/send`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: "include",
@@ -107,7 +108,7 @@ export default function PravasaLeadPage() {
     setMessage('');
 
     try {
-      const response = await fetch('https://api.rofconnect.com/api/enquiry/send', {
+      const response = await fetch(`${API_BASE_URL}/api/enquiry/send`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', 
@@ -425,7 +426,7 @@ export default function PravasaLeadPage() {
             <div className="bg-black/30  rounded-2xl p-8 shadow-2xl">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold text-white mb-2">Get Exclusive Details</h3>
-                <p className="text-white">Fill the form to receive pricing & floor plans</p>
+                <p className="text-white">Fill the form to schedule your site visit</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -938,10 +939,10 @@ export default function PravasaLeadPage() {
                 ROF <span className="text-[#2a502a]">PRAVASA</span>
               </div>
               <p className="text-gray-400 mb-4">Ultra Luxury Independent Floors at Sector-88A, Gurugram</p>
-              <div className="flex items-center text-green-400">
+              <a href="tel:9870247426" className="flex items-center text-green-400 hover:underline">
                 <Phone className="w-4 h-4 mr-2" />
                 <span className="font-semibold">9870 247 426</span>
-              </div>
+              </a>
             </div>
             <div>
               <h3 className="text-lg font-bold mb-4">Quick Links</h3>
