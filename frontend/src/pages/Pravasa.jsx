@@ -67,6 +67,7 @@ export default function PravasaLeadPage() {
       const res = await fetch('https://api.rofconnect.com/api/enquiry/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: "include",
         body: JSON.stringify({
           name: formData.name,
           phoneNumber: formData.phone,
@@ -109,8 +110,9 @@ export default function PravasaLeadPage() {
       const response = await fetch('https://api.rofconnect.com/api/enquiry/send', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json', 
         },
+        credentials: "include",
         body: JSON.stringify({
           name: formData.name,
           phoneNumber: formData.phone,
