@@ -261,7 +261,7 @@ export default function PravasaLeadPage() {
         
 
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-14 md:h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
               <div className="flex items-center">
@@ -320,7 +320,7 @@ export default function PravasaLeadPage() {
                 Download Brochure
               </button>
               <button className="flex items-center px-6 py-2 bg-[#2a502a] text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300"
-              onClick={() => window.open("https://wa.me/917827678754", "_blank")}
+              onClick={() => window.open("https://wa.me/919870247426", "_blank")}
               >
                 <Phone className="w-4 h-4 mr-2" />
                 Whatsapp
@@ -360,7 +360,7 @@ export default function PravasaLeadPage() {
               </a>
               <div className="pt-4 space-y-2">
                 <button className="flex items-center px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300"
-                onClick={() => window.open("https://wa.me/917827678754", "_blank")}
+                onClick={() => window.open("https://wa.me/919870247426", "_blank")}
                 >
                 <Phone className="w-4 h-4 mr-2" />
                 Whatsapp
@@ -380,7 +380,7 @@ export default function PravasaLeadPage() {
       {/* Hero Section */}
       <header
         id="home"
-        className="relative h-screen bg-cover bg-center bg-no-repeat"
+        className="relative h-screen bg-cover bg-center bg-no-repeat pt-[57rem] md:pt-0"
         style={{
           backgroundImage:
             "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('/img3.jpg')",
@@ -392,11 +392,11 @@ export default function PravasaLeadPage() {
             <div className="text-white">
               <div className="mb-8">
                 
-                <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+                <h1 className="text-xl lg:text-7xl font-bold mb-1 md:mb-6 leading-tight">
                   ROF <span className="text-green-700">PRAVASA</span>
                 </h1>
-                <p className="text-xl lg:text-2xl text-gray-200 mb-4">Ultra Luxury Independent Floors</p>
-                <p className="text-lg text-green-400 font-semibold mb-6">Sector-88A, Gurugram • Dwarka Expressway</p>
+                <p className="text-lg lg:text-2xl text-gray-200 mb-2 md:mb-4">Ultra Luxury Independent Floors</p>
+                <p className="text-sm text-green-400 font-semibold mb-2 md:mb-6">Sector-88A, Gurugram • Dwarka Expressway</p>
 
                 <div className="flex flex-wrap gap-4 mb-8">
                   <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
@@ -940,7 +940,7 @@ export default function PravasaLeadPage() {
               <p className="text-gray-400 mb-4">Ultra Luxury Independent Floors at Sector-88A, Gurugram</p>
               <div className="flex items-center text-green-400">
                 <Phone className="w-4 h-4 mr-2" />
-                <span className="font-semibold">7827 678 754</span>
+                <span className="font-semibold">9870 247 426</span>
               </div>
             </div>
             <div>
@@ -980,7 +980,7 @@ export default function PravasaLeadPage() {
       <div className="fixed bottom-6 right-6 z-50">
         <button
           className="w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl flex items-center justify-center text-white animate-pulse transition-all duration-300 hover:scale-110"
-          onClick={() => window.open("https://wa.me/917827678754", "_blank")}
+          onClick={() => window.open("https://wa.me/919870247426", "_blank")}
         >
           <MessageCircle className="w-8 h-8" />
         </button>
