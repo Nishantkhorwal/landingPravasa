@@ -22,11 +22,18 @@ import {
   ShoppingBag,
   Gamepad2,
   Eye,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react"
 
 export default function PravasaLeadPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+   const [loading, setLoading] = useState(false);
+   const [message, setMessage] = useState('');
+   const [loadingBrochure, setBrochureLoading] = useState(false);
+   const [messageBrochure, setBrochureMessage] = useState('');
+   const [showBrochureForm, setShowBrochureForm] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -51,13 +58,81 @@ export default function PravasaLeadPage() {
       [e.target.name]: e.target.value,
     })
   }
+  const handleBrochureSubmit = async (e) => {
+    e.preventDefault();
+    setBrochureLoading(true);
+    setBrochureMessage('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-    alert("Thank you for your interest! We will contact you soon.")
-  }
+    try {
+      const res = await fetch('https://api.rofconnect.com/api/enquiry/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phoneNumber: formData.phone,
+          email: formData.email,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setBrochureMessage('Form submitted! Downloading brochure...');
+        // Simulate brochure download (replace with actual link)
+        const brochureLink = '/Brochure2.pdf';
+        const link = document.createElement('a');
+        link.href = brochureLink;
+        link.download = 'ROF-Pravasa-Brochure.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setShowBrochureForm(false);
+        setBrochureLoading(false);
+        setTimeout(() => setBrochureMessage(''), 3000);
+        setFormData({ name: '', phone: '', email: '' });
+      } else {
+        setBrochureMessage(data.error || 'Something went wrong.');
+      }
+    } catch (err) {
+      setBrochureMessage('Network error. Please try again.');
+    }
+
+    
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage('');
+
+    try {
+      const response = await fetch('https://api.rofconnect.com/api/enquiry/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phoneNumber: formData.phone,
+          email: formData.email,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setMessage('Thank you! We will contact you soon.');
+        setFormData({ name: '', phone: '', email: '' });
+        setTimeout(() => setMessage(''), 3000);
+      } else {
+        setMessage(result.error || 'Something went wrong.');
+      }
+    } catch (error) {
+      setMessage('Network error. Please try again later.');
+    }
+
+    setLoading(false);
+  };
 
   const amenities = [
     {
@@ -125,7 +200,7 @@ export default function PravasaLeadPage() {
     },
     {
       src: "/bgImage11.jpg?height=400&width=600",
-      title: "Apartments",
+      title: "Modern Facade",
     },
     {
       src: "/img1.jpg?height=400&width=600",
@@ -136,6 +211,25 @@ export default function PravasaLeadPage() {
       title: "Badminton Court",
     },
   ]
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === galleryImages.length - 1 ? 0 : prevIndex + 1))
+  }
+
+  const previousImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? galleryImages.length - 1 : prevIndex - 1))
+  }
+
+  // Auto-slide functionality (optional)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextImage()
+    }, 5000) // Change image every 5 seconds
+
+    return () => clearInterval(interval)
+  }, [currentImageIndex])
 
   const scrollToForm = () => {
     
@@ -162,16 +256,7 @@ export default function PravasaLeadPage() {
         }`}
       >
         {/* Top Bar */}
-        <div className="bg-gradient-to-r from-green-600 to-green-500 text-white py-2">
-          <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-6">
-              <span className="hidden md:flex items-center">
-                <Shield className="w-4 h-4 mr-1" /> RERA No: 21 of 2025
-              </span>
-            </div>
-            
-          </div>
-        </div>
+        
 
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
@@ -179,8 +264,7 @@ export default function PravasaLeadPage() {
             <div className="flex-shrink-0">
               <div className="flex items-center">
                 <div className="text-2xl font-bold">
-                  <span className={`${scrolled ? "text-gray-900" : "text-white"}`}>ROF</span>
-                  <span className="text-green-600 ml-2">PRAVASA</span>
+                  <img className="w-28" src={`${scrolled ? "greenlogo.png" : "spinlogo.png"}`}></img>
                 </div>
                 <div className={`ml-3 text-xs ${scrolled ? "text-gray-600" : "text-gray-300"}`}>
                   <div>THE LUXURY</div>
@@ -227,13 +311,17 @@ export default function PravasaLeadPage() {
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center space-x-4">
-              <button className="flex items-center px-6 py-2 bg-white text-green-600 border-2 border-green-600 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300">
+              <button 
+              onClick={() => setShowBrochureForm(true)}
+              className="flex items-center px-6 py-2 bg-white text-green-600 border-2 border-green-600 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300">
                 <Download className="w-4 h-4 mr-2" />
                 Download Brochure
               </button>
-              <button className="flex items-center px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300">
+              <button className="flex items-center px-6 py-2 bg-[#2a502a] text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300"
+              onClick={() => window.open("https://wa.me/917827678754", "_blank")}
+              >
                 <Phone className="w-4 h-4 mr-2" />
-                Call Now
+                Whatsapp
               </button>
             </div>
 
@@ -250,6 +338,7 @@ export default function PravasaLeadPage() {
             </div>
           </div>
         </div>
+        
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
@@ -268,13 +357,17 @@ export default function PravasaLeadPage() {
                 Pricing
               </a>
               <div className="pt-4 space-y-2">
-                <button className="w-full flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300">
+                <button className="flex items-center px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300"
+                onClick={() => window.open("https://wa.me/917827678754", "_blank")}
+                >
+                <Phone className="w-4 h-4 mr-2" />
+                Whatsapp
+              </button>
+                <button
+                onClick={() => setShowBrochureForm(true)} 
+                className="w-full flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300">
                   <Download className="w-4 h-4 mr-2" />
                   Download Brochure
-                </button>
-                <button className="w-full flex items-center justify-center px-6 py-3 bg-white text-green-600 border-2 border-green-600 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300">
-                  <Phone className="w-4 h-4 mr-2" />
-                  Call Now
                 </button>
               </div>
             </div>
@@ -298,7 +391,7 @@ export default function PravasaLeadPage() {
               <div className="mb-8">
                 
                 <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-                  ROF <span className="text-green-400">PRAVASA</span>
+                  ROF <span className="text-green-700">PRAVASA</span>
                 </h1>
                 <p className="text-xl lg:text-2xl text-gray-200 mb-4">Ultra Luxury Independent Floors</p>
                 <p className="text-lg text-green-400 font-semibold mb-6">Sector-88A, Gurugram • Dwarka Expressway</p>
@@ -316,11 +409,10 @@ export default function PravasaLeadPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="flex items-center justify-center px-8 py-4 bg-green-600 text-white rounded-lg font-semibold text-lg hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                  <Phone className="w-5 h-5 mr-2" />
-                  Call Now
-                </button>
-                <button className="flex items-center justify-center px-8 py-4 bg-white/10 text-white border-2 border-white rounded-lg font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm">
+                
+                <button 
+                 onClick={() => setShowBrochureForm(true)}
+                 className="flex items-center justify-center px-8 py-4 bg-white/10 text-white border-2 border-white rounded-lg font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm">
                   <Download className="w-5 h-5 mr-2" />
                   Download Brochure
                 </button>
@@ -328,10 +420,10 @@ export default function PravasaLeadPage() {
             </div>
 
             {/* Right Content - Lead Form */}
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
+            <div className="bg-black/30  rounded-2xl p-8 shadow-2xl">
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Get Exclusive Details</h3>
-                <p className="text-gray-600">Fill the form to receive pricing & floor plans</p>
+                <h3 className="text-2xl font-bold text-white mb-2">Get Exclusive Details</h3>
+                <p className="text-white">Fill the form to receive pricing & floor plans</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -370,15 +462,79 @@ export default function PravasaLeadPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full h-12 flex items-center justify-center text-lg bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  className="w-full h-12 flex items-center justify-center text-lg bg-[#2a502a] text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
-                  Get Price Details
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  {loading ? 'Submitting...' : 'Submit'}
+                  {!loading && <ArrowRight className="w-5 h-5 ml-2" />}
+
                 </button>
               </form>
+              {message && (
+                <p className="mt-4 text-center text-sm text-white bg-green-600 px-3 py-2 rounded">
+                  {message}
+                </p>
+              )}
+
+              {showBrochureForm && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black/70 z-50 flex items-center justify-center">
+          <div className="bg-white max-w-md w-full p-6 rounded-xl shadow-xl relative animate-slide-down">
+            <button
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+              onClick={() => setShowBrochureForm(false)}
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <h3 className="text-2xl font-bold text-center text-gray-800 mb-2">
+              Fill the form to download the brochure
+            </h3>
+
+            <form onSubmit={handleBrochureSubmit} className="space-y-4 mt-4">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Full Name *"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+                className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number *"
+                value={formData.phone}
+                onChange={handleInputChange}
+                required
+                className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address *"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+                className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full h-12 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition duration-300"
+              >
+                {loadingBrochure ? 'Submitting...' : 'Download Brochure'}
+              </button>
+            </form>
+
+            {messageBrochure && (
+              <p className="mt-4 text-center text-sm text-green-600">{messageBrochure}</p>
+            )}
+          </div>
+        </div>
+      )}
+
 
               <div className="mt-6 text-center">
-                <div className="flex items-center justify-center space-x-4 text-sm text-gray-600">
+                <div className="flex items-center justify-center space-x-4 text-sm text-white">
                   <div className="flex items-center">
                     <Shield className="w-4 h-4 mr-1 text-green-600" />
                     <span>RERA Approved</span>
@@ -396,13 +552,18 @@ export default function PravasaLeadPage() {
 
       {/* About Section */}
       <section className="py-20 bg-gray-50" id="about">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
+        <div className="max-w-7xl mx-auto px-4 ">
+          <div  className="flex lg:flex-row mb-16 flex-col gap-4 lg:gap-8 lg:justify-between justify-center ">
+          <div className="w-full lg:w-[48%] ">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Choose ROF Pravasa?</h2>
-            <div className="w-24 h-1 bg-green-600 mx-auto mb-8"></div>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Pravasa is where sophistication of lifestyle and philosophy of wellness converge. Sitting in the prime location of Dwarka Expressway, our homes are for the people looking beyond just a house - they're looking for a way of life. Mind and body as well as their wish to indulge in Opulence. Here every square inch is designed for improving your physique and state of mind.Rof Pravasa is a entry point to a phenomenon of a lifestyle in one of the most luxurious zones of Dwarka Expressway.No doubt it is a great chance with world class services and product streams.Buy a home that you will enjoy at the present time and for the future and have what the best amenities location and provides future benefits.
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed text-justify">
+              Pravasa is where sophistication of lifestyle and philosophy of wellness converge. Sitting in the prime location of Dwarka Expressway, our homes are for the people looking beyond just a house - they're looking for a way of life. Mind and body as well as their wish to indulge in Opulence. Here every square inch is designed for improving your physique and state of mind.Buy a home that you will enjoy at the present time and for the future and have what the best amenities location and provides future benefits.
             </p>
+          </div>
+          <div className="lg:mt-2 w-full lg:w-[48%]">
+          <iframe className="w-full h-full" src="https://www.youtube.com/embed/czHnlAZUaIA?si=i3Gh28LqkFP5KTKN" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+          </div>
+
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -470,17 +631,92 @@ export default function PravasaLeadPage() {
 
 
       {/* Simple Gallery Section */}
-      <section className="py-20 bg-gray-50">
+      
+          <section id="amenities" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">World-Class Amenities</h2>
-            <div className="w-24 h-1 bg-green-600 mx-auto mb-8"></div>
+          <div className="text-center mb-10">
+            <h2 className="text-4xl font-bold text-gray-900 mb-3">World Class Amenities</h2>
+            <div className="w-24 h-1 bg-green-600 mx-auto mb-4"></div>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Explore the stunning architecture and premium amenities of ROF Pravasa
+              Take a virtual tour of our stunning architecture and premium amenities
             </p>
           </div>
+          <div className="relative max-w-5xl mx-auto">
+            {/* Main Gallery Container */}
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white">
+              {/* Image Container */}
+              <div className="relative h-96 md:h-[500px] lg:h-[600px]">
+                <img
+                  src={galleryImages[currentImageIndex].src || "/placeholder.svg"}
+                  alt={galleryImages[currentImageIndex].title}
+                  className="w-full h-full object-cover transition-all duration-500"
+                />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Image Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+
+                {/* Image Title */}
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h3 className="text-2xl font-bold mb-2">{galleryImages[currentImageIndex].title}</h3>
+                
+                </div>
+
+                {/* Image Counter */}
+                <div className="absolute top-6 right-6 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold">
+                  {currentImageIndex + 1} / {galleryImages.length}
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={previousImage}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+              >
+                <ChevronLeft className="w-6 h-6 text-gray-700 group-hover:text-green-600" />
+              </button>
+
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+              >
+                <ChevronRight className="w-6 h-6 text-gray-700 group-hover:text-green-600" />
+              </button>
+            </div>
+
+            {/* Thumbnail Navigation */}
+            {/* <div className="flex justify-center mt-6 space-x-2 overflow-x-auto pb-2">
+              {galleryImages.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                    currentImageIndex === index
+                      ? "border-green-600 shadow-lg scale-105"
+                      : "border-gray-300 hover:border-green-400"
+                  }`}
+                >
+                  <img src={image.src || "/placeholder.svg"} alt={image.title} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div> */}
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center mt-4 space-x-2">
+              {galleryImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentImageIndex === index ? "bg-green-600 scale-125" : "bg-gray-300 hover:bg-green-400"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {galleryImages.map((image, index) => (
               <div
                 key={index}
@@ -492,9 +728,7 @@ export default function PravasaLeadPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
+          </div> */}
 
       {/* Location & Site Map Section */}
       <section className="py-20 bg-white">
@@ -595,19 +829,27 @@ export default function PravasaLeadPage() {
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Home className="w-10 h-10 text-green-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">3BHK Apartments</h3>
-                <div className="text-4xl font-bold text-green-600 mb-2">₹72L now</div>
-                <div className="text-gray-600">Rest on possession</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Perfect Investment Opportunity</h3>
+                <div className="text-4xl font-bold text-green-600 mb-2">3 BHK </div>
+                <div className="text-gray-600">Ultra Luxury Apartments</div>
               </div>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span className="text-gray-700">Booking Amount</span>
-                  <span className="font-semibold text-gray-900">₹10 LAC</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span className="text-gray-700">Payment Plan</span>
-                  <span className="font-semibold text-gray-900">30:70</span>
-                </div>
+              <div className="space-y-8">
+                <div className="flex items-center">
+                    <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
+                    <span>High appreciation potential in Dwarka Expressway corridor</span>
+                  </div>
+                <div className="flex items-center">
+                    <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
+                    <span>Ready-to-move luxury independent floors</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
+                    <span>Premium location with excellent connectivity</span>
+                  </div>
+                  <div className="flex items-center">
+                    <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
+                    <span>World-class amenities and infrastructure</span>
+                  </div>
               </div>
             </div>
 
@@ -629,6 +871,10 @@ export default function PravasaLeadPage() {
                   <span className="font-semibold text-gray-900">✓ Included</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span className="text-gray-700">Free Club Membership</span>
+                  <span className="font-semibold text-gray-900">✓ Included</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-gray-700">Private Parking</span>
                   <span className="font-semibold text-gray-900">✓ Included</span>
                 </div>
@@ -639,45 +885,11 @@ export default function PravasaLeadPage() {
               </div>
             </div>
           </div>
-
-          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-3xl font-bold mb-6">Perfect Investment Opportunity</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
-                    <span>High appreciation potential in Dwarka Expressway corridor</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
-                    <span>Ready-to-move luxury independent floors</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
-                    <span>Premium location with excellent connectivity</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
-                    <span>World-class amenities and infrastructure</span>
-                  </div>
-                </div>
-              </div>
-              <div className="text-center lg:text-right">
-                <div className="text-5xl font-bold text-green-400 mb-2">₹72L Now</div>
-                <div className="text-xl mb-6">Rest on possession for 3BHK</div>
-                <button className="flex items-center justify-center px-8 py-4 bg-green-600 text-white rounded-lg font-semibold text-lg hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 mx-auto lg:mx-0">
-                  Get Price Details
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-green-600 text-white">
+      {/* <section className="py-20 bg-green-600 text-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Make ROF Pravasa Your Home?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
@@ -713,7 +925,7 @@ export default function PravasaLeadPage() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
@@ -721,7 +933,7 @@ export default function PravasaLeadPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="text-2xl font-bold mb-4">
-                ROF <span className="text-green-400">PRAVASA</span>
+                ROF <span className="text-[#2a502a]">PRAVASA</span>
               </div>
               <p className="text-gray-400 mb-4">Ultra Luxury Independent Floors at Sector-88A, Gurugram</p>
               <div className="flex items-center text-green-400">
