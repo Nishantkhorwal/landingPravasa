@@ -15,7 +15,7 @@ const ThankYouPage = () => {
   // Clear it *after* a short delay to avoid double-render issues
   const timeout = setTimeout(() => {
     sessionStorage.removeItem('formSubmitted');
-  }, 500); // Delay gives time for rendering before React unmounts in dev
+  }, 500); 
 
   return () => clearTimeout(timeout);
 }, [navigate]);
