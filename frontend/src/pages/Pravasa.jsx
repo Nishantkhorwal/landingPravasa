@@ -25,8 +25,10 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export default function PravasaLeadPage() {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
    const [loading, setLoading] = useState(false);
@@ -124,9 +126,10 @@ export default function PravasaLeadPage() {
       const result = await response.json();
 
       if (response.ok) {
+        sessionStorage.setItem('formSubmitted', 'true');
         setMessage('Thank you! We will contact you soon.');
         setFormData({ name: '', phone: '', email: '' });
-        setTimeout(() => setMessage(''), 3000);
+        navigate("/thankyou");
       } else {
         setMessage(result.error || 'Something went wrong.');
       }
