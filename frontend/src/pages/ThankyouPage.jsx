@@ -5,6 +5,16 @@ const ThankYouPage = () => {
     const navigate = useNavigate();
 
   useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-17268062261/-SB3COSKxuYaELXwhqpA',
+        value: 1.0,
+        currency: 'INR',
+      });
+    }
+  }, []);  
+
+  useEffect(() => {
   const isSubmitted = sessionStorage.getItem('formSubmitted');
 
   if (!isSubmitted) {
