@@ -5,14 +5,18 @@ const ThankYouPage = () => {
     const navigate = useNavigate();
 
   useEffect(() => {
-    if (window.gtag) {
+     if (typeof window.gtag === 'function') {
+      console.log("✅ Firing conversion to Google Ads...");
       window.gtag('event', 'conversion', {
         send_to: 'AW-17268062261/-SB3COSKxuYaELXwhqpA',
         value: 1.0,
         currency: 'INR',
       });
     }
-  }, []);  
+  }, []); 
+  useEffect(() => {
+  console.log('Is gtag loaded?', typeof window.gtag); // should be "function"
+}, []); 
 
   useEffect(() => {
   const isSubmitted = sessionStorage.getItem('formSubmitted');

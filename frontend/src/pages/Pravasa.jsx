@@ -103,6 +103,9 @@ export default function PravasaLeadPage() {
 
     
   };
+  useEffect(() => {
+    console.log('Is gtag loaded?', typeof window.gtag); // should be "function"
+  }, []); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
