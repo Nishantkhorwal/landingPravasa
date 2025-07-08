@@ -470,7 +470,7 @@ const pravasaimages = [
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-6">
+            <div className="hidden lg:flex items-center space-x-3">
               <a
                 href="#home"
                 className={`px-3 py-2 text-sm font-medium transition-colors ${scrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"
@@ -526,11 +526,11 @@ const pravasaimages = [
             <div className="hidden lg:flex items-center space-x-4">
               <button
                 onClick={() => setShowBrochureForm(true)}
-                className="flex items-center px-6 py-2 bg-white text-green-600 border-2 border-green-600 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300">
+                className="flex items-center px-4 py-2 bg-white text-green-600 border-2 border-green-600 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300">
                 <Download className="w-4 h-4 mr-2" />
                 Download Brochure
               </button>
-              <button className="flex items-center px-6 py-2 bg-[#2a502a] text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300"
+              <button className="flex items-center px-4 py-2 bg-[#2a502a] text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300"
                 onClick={() => window.open("https://wa.me/919870247426", "_blank")}
               >
                 <Phone className="w-4 h-4 mr-2" />
@@ -1090,7 +1090,7 @@ const pravasaimages = [
 
         {/* Map Image with Overlay */}
         <div className="w-full lg:w-1/2">
-          <div className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg" onClick={scrollToForm}>
+          <div className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg" onClick={() => setShowEnquireForm(true)}>
             <img
               src="/locationMap3.jpg"
               alt="Location Map"
@@ -1118,7 +1118,7 @@ const pravasaimages = [
     </section>
 
     <section id="floorPlan"  className="bg-[#1a1a1a] text-white py-16 px-4 md:lg-10 lg:px-20">
-      <div className=" flex flex-col lg:flex-row-reverse  gap-8 items-start">
+      <div className=" flex flex-col lg:flex-row-reverse  gap-8 items-center">
         {/* Left - Table */}
         <div className="w-full">
           <h2 className="text-4xl font-bold mb-6 americana">
