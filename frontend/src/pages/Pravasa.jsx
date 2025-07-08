@@ -865,57 +865,6 @@ const pravasaimages = [
           </div>
         </div>
       </div>
-
-      {/* Amenities Section */}
-      <div id="amenities" className=" py-20">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 americana">
-              World-Class <span className="text-yellow-600">Amenities</span>
-            </h2>
-            <p className="text-xl text-gray-800 max-w-3xl mx-auto">
-              Experience luxury living with our thoughtfully designed amenities for every lifestyle
-            </p>
-          </div>
-          <div className="grid lg:grid-cols-2 gap-12">
-            {amenityCategories.map((category, index) => (
-              <div
-                key={index}
-                className="group relative bg-[#1a1a1a] rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden "
-              >
-                {/* Header */}
-                <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-8 text-black relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/10" />
-                  <div className="relative z-10">
-                    <h3 className="text-2xl font-bold mb-2">{category.title}</h3>
-                    <p className="text-black/80">Premium facilities for your comfort</p>
-                  </div>
-                  <div className="absolute -right-8 -top-8 w-32 h-32 bg-black/10 rounded-full" />
-                  <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-black/5 rounded-full" />
-                </div>
-                {/* Amenities Grid */}
-                <div className="p-8">
-                  <div className="grid grid-cols-2 gap-4">
-                    {category.amenities.map((amenity, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-[#2a2a2a] rounded-xl p-4 hover:scale-105 transition-transform duration-200 border border-gray-600"
-                      >
-                        <div className="flex items-center">
-                          <Star className="w-4 h-4 text-yellow-400 mr-2 flex-shrink-0" />
-                          <span className="text-sm font-medium text-gray-200">{amenity}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-
       <div id="pricing" className="bg-[#1a1a1a] py-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white americana">
@@ -1004,32 +953,91 @@ const pravasaimages = [
         </div>
       </div>
       <section className="bg-[#1a1a1a] text-white py-20 px-4 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center americana">
-            <span className="text-yellow-400">Flexible</span> Payment Plan
-          </h2>
-          <div className="bg-[#1a1a1a] rounded-2xl shadow-xl p-8 border border-gray-700">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center bg-[#2a2a2a] rounded-lg p-6 shadow-md border border-gray-600">
-                <div className="text-2xl font-bold text-yellow-400 mb-2">₹5 Lakhs</div>
-                <p className="text-gray-300 font-medium">Booking Amount</p>
+  <div className="max-w-6xl mx-auto">
+    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center americana">
+      <span className="text-yellow-400">Possession Linked</span> Payment Plan (30:70)
+    </h2>
+
+    <div className="bg-[#1a1a1a] rounded-2xl shadow-xl p-8 border border-gray-700">
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="text-center bg-[#2a2a2a] rounded-lg p-6 shadow-md border border-gray-600">
+          <div className="text-2xl font-bold text-yellow-400 mb-2">10% of TSV</div>
+          <p className="text-gray-300 font-medium">At the Time of Booking</p>
+        </div>
+        <div className="text-center bg-[#2a2a2a] rounded-lg p-6 shadow-md border border-gray-600">
+          <div className="text-2xl font-bold text-yellow-400 mb-2">Completion 30% of TSV</div>
+          <p className="text-gray-300 font-medium">Within 45 Days of Booking</p>
+        </div>
+        <div className="text-center bg-[#2a2a2a] rounded-lg p-6 shadow-md border border-gray-600">
+          <div className="text-2xl font-bold text-yellow-400 mb-2">70% of TSV + Charges</div>
+          <p className="text-gray-300 font-medium">On Offer of Possession</p>
+        </div>
+      </div>
+
+      <div className="mt-10">
+        <h3 className="text-xl font-semibold mb-4 text-yellow-400">Terms & Conditions:</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-300">
+          <li>GST & PLC as applicable</li>
+          <li>Meter charges applicable as per actual cost</li>
+          <li>Govt. Charges, Power Backup, IFMS & Taxes as applicable</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+      {/* Amenities Section */}
+      <div id="amenities" className=" py-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 americana">
+              World-Class <span className="text-yellow-600">Amenities</span>
+            </h2>
+            <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+              Experience luxury living with our thoughtfully designed amenities for every lifestyle
+            </p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-12">
+            {amenityCategories.map((category, index) => (
+              <div
+                key={index}
+                className="group relative bg-[#1a1a1a] rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden "
+              >
+                {/* Header */}
+                <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-8 text-black relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black/10" />
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold mb-2">{category.title}</h3>
+                    <p className="text-black/80">Premium facilities for your comfort</p>
+                  </div>
+                  <div className="absolute -right-8 -top-8 w-32 h-32 bg-black/10 rounded-full" />
+                  <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-black/5 rounded-full" />
+                </div>
+                {/* Amenities Grid */}
+                <div className="p-8">
+                  <div className="grid grid-cols-2 gap-4">
+                    {category.amenities.map((amenity, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-[#2a2a2a] rounded-xl p-4 hover:scale-105 transition-transform duration-200 border border-gray-600"
+                      >
+                        <div className="flex items-center">
+                          <Star className="w-4 h-4 text-yellow-400 mr-2 flex-shrink-0" />
+                          <span className="text-sm font-medium text-gray-200">{amenity}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <div className="text-center bg-[#2a2a2a] rounded-lg p-6 shadow-md border border-gray-600">
-                <div className="text-2xl font-bold text-yellow-400 mb-2">10%</div>
-                <p className="text-gray-300 font-medium">Within 15 days</p>
-              </div>
-              <div className="text-center bg-[#2a2a2a] rounded-lg p-6 shadow-md border border-gray-600">
-                <div className="text-2xl font-bold text-yellow-400 mb-2">70%</div>
-                <p className="text-gray-300 font-medium">On completion</p>
-              </div>
-              <div className="text-center bg-[#2a2a2a] rounded-lg p-6 shadow-md border border-gray-600">
-                <div className="text-2xl font-bold text-green-400 mb-2">20%</div>
-                <p className="text-gray-300 font-medium">On possession</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
+
+
+      
+
 
 
 
@@ -1140,10 +1148,6 @@ const pravasaimages = [
               </tbody>
             </table>
           </div>
-
-          <button className="mt-4 bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-2 px-6 rounded-lg shadow">
-            Download Payment Plan
-          </button>
         </div>
 
         {/* Right - Carousel */}
