@@ -359,25 +359,23 @@ const Carouselimages = [
   ]
 
   const images = [
-  "/img1.jpg",
-  "/img2.jpg",
-  "Club.webp",
-  "ClubReception.webp",
-  "/img3.jpg",
-  "/img4.jpg",
-  "/img5.jpg",
-  "/img6.jpg",
-  "HarmonyGarden.webp",
-  "SwimmingPool.webp",
-  "Balcony.webp",
-  "CricketPitch.webp",
-  "LuxuryFloor.webp",
-  "OutdoorDining.webp",
-  "OutdoorGym.webp",
-
-
-  // Add more image paths
+  { src: "/img1.jpg", title: "Reflexology Park" },
+  { src: "/img2.jpg", title: "Badminton Court" },
+  { src: "Club.webp", title: "Clubhouse Exterior" },
+  { src: "ClubReception.webp", title: "Clubhouse Reception Area" },
+  { src: "/img3.jpg", title: "Luxury Sculptures" },
+  { src: "/img4.jpg", title: "Amphitheatre" },
+  { src: "/img5.jpg", title: "Basketball Court" },
+  { src: "/img6.jpg", title: "Luxury Apartment" },
+  { src: "HarmonyGarden.webp", title: "Harmony Garden" },
+  { src: "SwimmingPool.webp", title: "Swimming Pool" },
+  { src: "Balcony.webp", title: "Scenic Balcony" },
+  { src: "CricketPitch.webp", title: "Cricket Pitch" },
+  { src: "LuxuryFloor.webp", title: "Luxury Floor Plan" },
+  { src: "OutdoorDining.webp", title: "Outdoor Dining" },
+  { src: "OutdoorGym.webp", title: "Outdoor Gym Area" },
 ];
+
 const pravasaimages = [
   "/img1.jpg",
   "/img2.jpg",
@@ -438,7 +436,7 @@ const pravasaimages = [
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="fixed -rotate-90 bottom-44 right-[-63px] z-50">
+      <div className="fixed -rotate-90 bottom-60 right-[-63px] z-50">
         <button
           onClick={() => setShowEnquireForm(true)}
           className="bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-t-xl shadow-2xl flex items-center transition-all duration-300 hover:scale-105 "
@@ -514,6 +512,13 @@ const pravasaimages = [
                   }`}
               >
                 Gallery
+              </a>
+              <a
+                href="tel:9870247426"
+                className={`px-3 py-2 text-sm font-medium transition-colors ${scrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"
+                  }`}
+              >
+                9870247426
               </a>
             </div>
 
@@ -606,9 +611,17 @@ const pravasaimages = [
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
           <div className="max-w-7xl mx-auto">
             {/* Project Title and Location */}
+            <div className="flex flex-row items-center gap-8">
             <div className="mb-6 shadow-xl">
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-2 americana">ROF Pravasa</h1>
               <p className="text-lg md:text-xl text-gray-200 lora">Sector 88A, Dwarka Expressway, Gurugram</p>
+            </div>
+            <div>
+            <div className="text-white px-4 py-2 bg-yellow-600 shadow-xl">
+                  <div className="text-white text-xs md:text-sm font-semibold  uppercase tracking-wide carlito-regular">Special Offer</div>
+                  <div className="text-xs text-justify md:text-lg font-bold carlito-regular">Free Parking & Club Membership</div>
+            </div>
+            </div>
             </div>
 
             {/* Property Details and CTA */}
@@ -627,6 +640,7 @@ const pravasaimages = [
                   <div className="text-yellow-400 text-sm font-semibold mb-1 uppercase tracking-wide carlito-regular">Sizes</div>
                   <div className="text-lg md:text-xl font-bold carlito-regular">1850-1970 sq.ft.</div>
                 </div>
+                
                 <div className="text-white col-span-2 md:col-span-1 ps-4 py-2 bg-black/50 shadow-xl">
                   <div className="text-yellow-400 text-sm font-semibold mb-1 uppercase tracking-wide carlito-regular">RERA</div>
                   <div className="text-sm md:text-base font-bold carlito-regular">RERA-GRG-21 of 2025</div>
@@ -1181,7 +1195,7 @@ const pravasaimages = [
             >
               <div className="relative aspect-[6/3] overflow-hidden">
                 <img
-                  src={src || "/placeholder.svg"}
+                  src={src.src || "/placeholder.svg"}
                   alt={`Gallery ${index + 1}`}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
@@ -1191,6 +1205,9 @@ const pravasaimages = [
                     <ZoomIn className="w-8 h-8 text-white" />
                   </div>
                 </div>
+              </div>
+              <div className="absolute bottom-10 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-base font-medium">{src.title}</p>
               </div>
               <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="text-sm text-gray-200">Click to view full size</p>
@@ -1246,10 +1263,11 @@ const pravasaimages = [
               {/* Enhanced Image Container */}
               <div className="relative max-w-6xl w-full mx-auto">
                 <img
-                  src={images[currentIndex] || "/placeholder.svg"}
+                  src={images[currentIndex].src || "/placeholder.svg"}
                   alt={`Gallery ${currentIndex + 1}`}
                   className="w-full max-h-[85vh] object-contain rounded-xl shadow-2xl"
                 />
+                <p className="text-white mt-2 text-xl text-center font-semibold">{images[currentIndex].title}</p>
               </div>
 
               {/* Thumbnail Navigation */}
@@ -1337,11 +1355,19 @@ const pravasaimages = [
       {/* Floating WhatsApp Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <button
-          className="w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl flex items-center justify-center text-white animate-pulse transition-all duration-300 hover:scale-110"
+          className="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl flex items-center justify-center text-white  transition-all duration-300 hover:scale-110"
           onClick={() => window.open("https://wa.me/919870247426", "_blank")}
         >
           <MessageCircle className="w-8 h-8" />
         </button>
+      </div>
+      <div className="fixed bottom-24 right-6 z-50">
+        <a
+          className="w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl flex items-center justify-center text-white  transition-all duration-300 hover:scale-110"
+          href="tel:9870247426"
+        >
+          <Phone className="w-8 h-8" />
+        </a>
       </div>
     </div>
   )
