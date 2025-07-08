@@ -456,7 +456,7 @@ const pravasaimages = [
         {/* Top Bar */}
 
 
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-8xl mx-auto px-4 md:px-10">
           <div className="flex justify-between items-center h-14 md:h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -500,6 +500,20 @@ const pravasaimages = [
                   }`}
               >
                 Pricing
+              </a>
+              <a
+                href="#floorPlan"
+                className={`px-3 py-2 text-sm font-medium transition-colors ${scrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"
+                  }`}
+              >
+                Floor Plan
+              </a>
+              <a
+                href="#gallery"
+                className={`px-3 py-2 text-sm font-medium transition-colors ${scrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"
+                  }`}
+              >
+                Gallery
               </a>
             </div>
 
@@ -833,7 +847,7 @@ const pravasaimages = [
       </div>
 
       {/* Amenities Section */}
-      <div className=" py-20">
+      <div id="amenities" className=" py-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 americana">
@@ -882,7 +896,7 @@ const pravasaimages = [
       </div>
 
 
-      <div className="bg-[#1a1a1a] py-20">
+      <div id="pricing" className="bg-[#1a1a1a] py-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white americana">
             Investment <span className="text-yellow-400">Overview</span>
@@ -1075,7 +1089,7 @@ const pravasaimages = [
       </div>
     </section>
 
-    <section className="bg-[#1a1a1a] text-white py-16 px-4 md:lg-10 lg:px-20">
+    <section id="floorPlan"  className="bg-[#1a1a1a] text-white py-16 px-4 md:lg-10 lg:px-20">
       <div className=" flex flex-col lg:flex-row-reverse  gap-8 items-start">
         {/* Left - Table */}
         <div className="w-full">
@@ -1141,7 +1155,7 @@ const pravasaimages = [
 
 
 
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section id="gallery" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="px-4 md:px-10 lg:px-20">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 americana">
