@@ -560,8 +560,14 @@ const pravasaimages = [
               <a href="#amenities" className="block px-3 py-2 text-gray-700 hover:text-green-600 font-medium">
                 Amenities
               </a>
+              <a href="#floorPlan" className="block px-3 py-2 text-gray-700 hover:text-green-600 font-medium">
+                Floor Plan
+              </a>
               <a href="#pricing" className="block px-3 py-2 text-gray-700 hover:text-green-600 font-medium">
                 Pricing
+              </a>
+              <a href="#gallery" className="block px-3 py-2 text-gray-700 hover:text-green-600 font-medium">
+                Gallery
               </a>
               <div className="pt-4 space-y-2">
                 <button className="flex items-center px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300"
