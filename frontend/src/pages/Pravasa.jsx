@@ -454,7 +454,7 @@ const pravasaimages = [
         {/* Top Bar */}
 
 
-        <div className="max-w-8xl mx-auto px-4 md:px-10">
+        <div className="max-w-8xl mx-auto px-4 md:px-8">
           <div className="flex justify-between items-center h-14 md:h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -517,16 +517,16 @@ const pravasaimages = [
             </div>
 
             {/* CTA Buttons */}
-            <div className="hidden lg:flex items-center space-x-4">
+            <div className="hidden lg:flex items-center gap-3">
                
               <button
                 onClick={() => setShowBrochureForm(true)}
-                className="flex items-center px-4 py-2 bg-white text-green-600 border-2 border-green-600 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300">
+                className="flex items-center px-2 py-1 bg-white text-green-600 border-2 border-green-600 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300">
                 <Download className="w-4 h-4 mr-2" />
                 Download Brochure
               </button>
              
-              <button className="flex items-center px-4 py-2 bg-[#2a502a] text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300"
+              <button className="flex items-center px-2 py-1 bg-[#2a502a] text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300"
                 onClick={() => window.open("https://wa.me/919870247426", "_blank")}
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
@@ -534,7 +534,7 @@ const pravasaimages = [
               </button>
               <a
                 href="tel:9870247426"
-                className={`flex items-center px-4 py-2 bg-yellow-600 text-white rounded-lg font-semibold hover:bg-yellow-800 transition-all duration-300"
+                className={`flex items-center px-2 py-1 bg-yellow-600 text-white rounded-lg font-semibold hover:bg-yellow-800 transition-all duration-300"
                   }`}
               >
                 <Phone className="w-4 h-4 mr-2" />
@@ -612,7 +612,7 @@ const pravasaimages = [
         
 
         {/* Bottom Content */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+        <div className="absolute bottom-0 left-0 right-0 p-6 md:px-10 md:py-10">
           <div className="max-w-7xl mx-auto">
             {/* Project Title and Location */}
             <div className="flex flex-row items-center gap-8">
@@ -629,7 +629,7 @@ const pravasaimages = [
             </div>
 
             {/* Property Details and CTA */}
-            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
               {/* Property Information Grid */}
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-8 flex-1">
                 <div className="text-white ps-4 py-2 bg-black/50 shadow-xl">
@@ -652,7 +652,7 @@ const pravasaimages = [
               </div>
 
               {/* Enquire Now Button */}
-              <div className="lg:ml-8">
+              <div className="">
                 <button
                   onClick={() => setShowEnquireForm(true)}
                   className="w-full lg:w-auto px-8 py-4 bg-yellow-500 text-black font-bold text-lg rounded-lg hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
@@ -1273,13 +1273,13 @@ const pravasaimages = [
                 <img
                   src={images[currentIndex].src || "/placeholder.svg"}
                   alt={`Gallery ${currentIndex + 1}`}
-                  className="w-full max-h-[85vh] object-contain rounded-xl shadow-2xl"
+                  className="w-full max-h-[80vh] object-contain rounded-xl shadow-2xl"
                 />
-                <p className="text-white mt-2 text-xl text-center font-semibold">{images[currentIndex].title}</p>
+                <p className="text-white  mt-2 text-xl text-center font-semibold">{images[currentIndex].title}</p>
               </div>
 
               {/* Thumbnail Navigation */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+              <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 z-10">
                 <div className="flex space-x-2 bg-black/70 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
                   {images.map((_, index) => (
                     <button
