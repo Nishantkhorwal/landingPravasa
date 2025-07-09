@@ -195,10 +195,10 @@ export default function PravasaLeadPage() {
     },
   ]
   const floorData = [
-  { type: "Type - A1", floor: "1st, 2nd & 3rd", size: "1848.19 sqft." },
-  { type: "Type - A1", floor: "4th", size: "2547.19 sqft." },
-  { type: "Type - D", floor: "1st, 2nd & 3rd", size: "1967.66 sqft." },
-  { type: "Type - D", floor: "4th", size: "2694.66 sqft." },
+  { type: "Type - A1", floor: "1st, 2nd & 3rd", size: "1847.53 sqft." },
+  { type: "Type - A1", floor: "4th", size: "2523.97 sqft." },
+  { type: "Type - D", floor: "1st, 2nd & 3rd", size: "2016.66 sqft." },
+  { type: "Type - D", floor: "4th", size: "2743.66 sqft." },
   { type: "Type - L", floor: "1st, 2nd & 3rd", size: "1847.53 sqft." },
   { type: "Type - L", floor: "4th", size: "2523.97 sqft." },
 ];
@@ -226,13 +226,13 @@ const Carouselimages = [
       icon: <Building2 className="w-8 h-8" />,
       title: "Premium Builder Floors",
       description: "Low-rise residential with Basement + Stilt + 4 floors",
-      features: ["3 BHK + 3T Configuration", "Independent floors", "816 units across 6 acres"],
+      features: ["3 BHK + 3T Configuration", "Independent floors", "816 units across 12 acres"],
     },
     {
       icon: <MapPin className="w-8 h-8" />,
       title: "Strategic Location",
       description: "Sector 88A, Gurugram on Dwarka Expressway",
-      features: ["20 mins to IGI Airport", "Close to Medanta", "Near IMT Manesar"],
+      features: ["25 mins to IGI Airport", "Close to Medanta", "Near IMT Manesar"],
     },
     {
       icon: <Award className="w-8 h-8" />,
@@ -513,29 +513,33 @@ const pravasaimages = [
               >
                 Gallery
               </a>
-              <a
-                href="tel:9870247426"
-                className={`px-3 py-2 text-sm font-medium transition-colors ${scrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"
-                  }`}
-              >
-                9870247426
-              </a>
+              
             </div>
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center space-x-4">
+               
               <button
                 onClick={() => setShowBrochureForm(true)}
                 className="flex items-center px-4 py-2 bg-white text-green-600 border-2 border-green-600 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300">
                 <Download className="w-4 h-4 mr-2" />
                 Download Brochure
               </button>
+             
               <button className="flex items-center px-4 py-2 bg-[#2a502a] text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300"
                 onClick={() => window.open("https://wa.me/919870247426", "_blank")}
               >
-                <Phone className="w-4 h-4 mr-2" />
+                <MessageCircle className="w-4 h-4 mr-2" />
                 Whatsapp
               </button>
+              <a
+                href="tel:9870247426"
+                className={`flex items-center px-4 py-2 bg-yellow-600 text-white rounded-lg font-semibold hover:bg-yellow-800 transition-all duration-300"
+                  }`}
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                9870247426
+              </a>
             </div>
 
             {/* Mobile menu button */}
@@ -638,7 +642,7 @@ const pravasaimages = [
                 </div>
                 <div className="text-white ps-4 py-2 bg-black/50 shadow-xl">
                   <div className="text-yellow-400 text-sm font-semibold mb-1 uppercase tracking-wide carlito-regular">Sizes</div>
-                  <div className="text-lg md:text-xl font-bold carlito-regular">1850-1970 sq.ft.</div>
+                  <div className="text-lg md:text-xl font-bold carlito-regular">1848 - 2694 sq.ft.</div>
                 </div>
                 
                 <div className="text-white col-span-2 md:col-span-1 ps-4 py-2 bg-black/50 shadow-xl">
@@ -794,7 +798,7 @@ const pravasaimages = [
                 ROF Pravasa, developed by ROF Infratech & Housing Pvt. Ltd. is an ultra‑luxury, low-rise residential
                 enclave of 3 BHK+3T builder floors in Sector 88A, Gurugram, along the Dwarka Expressway. Spanning about
                 12 acres with over 3.5 acres dedicated to greenery, the layout includes a Basement + Stilt + 4 floors,
-                with fourth-floor units featuring exclusive roof rights. With 816 units ranging from ~1,850 to 1,970 sq
+                with fourth-floor units featuring exclusive roof rights. With 816 units ranging from ~1848 – 2694 sq
                 ft and prices beginning around ₹2.4 Cr, Pravasa incorporates energy-efficient walls, a three-tier
                 security system, and earthquake-resistant RCC structure. Positioned just minutes from NH‑8, IGI Airport
                 (~20 min), IMT Manesar, Medanta, and more, this project boasts excellent connectivity and is supported
@@ -888,22 +892,22 @@ const pravasaimages = [
                   <tbody className="text-white">
                     <tr className="border-t border-gray-600 hover:bg-[#333333]">
                       <td className="px-6 py-4 font-medium">1st Floor</td>
-                      <td className="px-6 py-4 text-yellow-400">1967</td>
+                      <td className="px-6 py-4 text-yellow-400">2016</td>
                       <td className="px-6 py-4 text-green-400 font-bold">₹2,55,00,000</td>
                     </tr>
                     <tr className="border-t border-gray-600 hover:bg-[#333333]">
                       <td className="px-6 py-4 font-medium">2nd Floor</td>
-                      <td className="px-6 py-4 text-yellow-400">1967</td>
+                      <td className="px-6 py-4 text-yellow-400">2016</td>
                       <td className="px-6 py-4 text-green-400 font-bold">₹2,50,00,000</td>
                     </tr>
                     <tr className="border-t border-gray-600 hover:bg-[#333333]">
                       <td className="px-6 py-4 font-medium">3rd Floor</td>
-                      <td className="px-6 py-4 text-yellow-400">1967</td>
+                      <td className="px-6 py-4 text-yellow-400">2016</td>
                       <td className="px-6 py-4 text-green-400 font-bold">₹2,50,00,000</td>
                     </tr>
                     <tr className="border-t border-gray-600 hover:bg-[#333333] bg-gradient-to-r from-yellow-500/10 to-yellow-400/10">
                       <td className="px-6 py-4 font-medium">4th Floor</td>
-                      <td className="px-6 py-4 text-yellow-400">2694</td>
+                      <td className="px-6 py-4 text-yellow-400">2744</td>
                       <td className="px-6 py-4 text-yellow-400 font-bold">₹2,60,00,000</td>
                     </tr>
                   </tbody>
@@ -942,7 +946,7 @@ const pravasaimages = [
                     </tr>
                     <tr className="border-t border-gray-600 hover:bg-[#333333] bg-gradient-to-r from-yellow-500/10 to-yellow-400/10">
                       <td className="px-6 py-4 font-medium">4th Floor</td>
-                      <td className="px-6 py-4 text-yellow-400">2547</td>
+                      <td className="px-6 py-4 text-yellow-400">2524</td>
                       <td className="px-6 py-4 text-yellow-400 font-bold">₹2,50,00,000</td>
                     </tr>
                   </tbody>
@@ -1317,14 +1321,18 @@ const pravasaimages = [
                 ROF <span className="text-yellow-400">PRAVASA</span>
               </div>
               <p className="text-gray-400 mb-4">Ultra Luxury Independent Floors at Sector-88A, Gurugram</p>
-              <a href="tel:9870247426" className="flex items-center text-green-400 hover:underline">
-                <Phone className="w-4 h-4 mr-2" />
-                <span className="font-semibold">9870 247 426</span>
-              </a>
+              <div className="flex items-center mt-4">
+                  <Shield className="w-4 h-4 mr-2 text-green-400" />
+                  <span className="text-green-400 font-semibold">RERA Approved</span>
+                </div>
+                 
             </div>
             <div>
               <h3 className="text-lg font-bold mb-4 text-yellow-400">Quick Links</h3>
               <div className="space-y-2">
+                <a href="#home" className="block text-gray-400 hover:text-white transition-colors">
+                  Home
+                </a>
                 <a href="#about" className="block text-gray-400 hover:text-white transition-colors">
                   About Project
                 </a>
@@ -1334,18 +1342,39 @@ const pravasaimages = [
                 <a href="#pricing" className="block text-gray-400 hover:text-white transition-colors">
                   Pricing
                 </a>
+                <a href="#floorPlan" className="block text-gray-400 hover:text-white transition-colors">
+                  Floor Plan
+                </a>
+                <a href="#gallery" className="block text-gray-400 hover:text-white transition-colors">
+                  Gallery
+                </a>
+                
               </div>
             </div>
             <div>
               <h3 className="text-lg font-bold mb-4 text-yellow-400">Contact Info</h3>
               <div className="space-y-2 text-gray-400">
-                <p>Sector-88A, Gurugram</p>
-                <p>Dwarka Expressway</p>
-                <p>Haryana, India</p>
-                <div className="flex items-center mt-4">
-                  <Shield className="w-4 h-4 mr-2 text-green-400" />
-                  <span className="text-green-400 font-semibold">RERA Approved</span>
-                </div>
+                <p>Sector-88A, Gurugram Dwarka</p>
+                <p>Expressway Haryana, India</p>
+                
+              </div>
+              <div className="flex items-center mt-4 gap-4">
+                <a href="tel:9870247426" className="flex items-center text-green-400 hover:underline ">
+                  <Phone className="w-4 h-4 mr-2" />
+                  <span className="font-semibold">9870 247 426</span>
+                </a>
+              <button onClick={() => window.open("https://wa.me/919870247426", "_blank")} className="flex items-center hover:underline text-green-400 ">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                <span className="font-semibold">Whatsapp</span>
+              </button>
+              </div>
+              <div className="mt-10">
+                <button
+                  onClick={() => setShowEnquireForm(true)}
+                  className="w-full lg:w-auto px-4 py-2 bg-yellow-500 text-black font-bold text-lg rounded-lg hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                >
+                  Enquire Now
+                </button>
               </div>
             </div>
           </div>
